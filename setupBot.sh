@@ -98,7 +98,7 @@ localConfigSetup()
 
 gitConfigSetup()
 {
-    read -p "Please provide git repo url (Ex: https://hariomv-exzeo@bitbucket.org/exzeo-usa/harmony-web.git)" gitConfigPath
+    read -p "Please provide git repo url (Ex: https://github.com/hariom282538/GetJX.git)" gitConfigPath
     mkdir -p ~/.kube/
     git clone gitConfigPath ~/.kube/
     echo "configured path - ~/.kube/"
