@@ -16,6 +16,8 @@ Pick the most suitable instructions for your operating system:
 * macOS
 * Linux
 
+Run
+
 * chmod +x setupBot.sh
 * ./setupBot.sh
 
