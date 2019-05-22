@@ -7,14 +7,17 @@ macSetup()
     aws configure
     brew install kubernetes-cli
     kubectl version
+    echo "Enabling kubectl autocompletion"
+    brew install bash-completion@2
+    echo 'source <(kubectl completion bash)' >>~/.bashrc
     read -p "Install kops? [Y/n]" MAC_KOPS_CONFIG
     case $MAC_KOPS_CONFIG in
         [Yy]* ) macKopsSetup break;;
         [Nn]* ) exit;;
         * ) echo "Please answer yes or no.";;
     esac
-    read -p "Due you wish to use existing kube-configurations? [Y/n] " KUBE-CONFIG
-    case $KUBE-CONFIG in
+    read -p "Due you wish to use existing kube-configurations? [Y/n] " KUBE_CONFIG
+    case $KUBE_CONFIG in
         [Yy]* ) configSetup break;;
         [Nn]* ) exit;;
         * ) echo "Please answer yes or no.";;
@@ -39,6 +42,8 @@ linuxSetup()
     sudo apt-get update
     sudo apt-get install -y kubectl
     kubectl version
+    echo "Enabling kubectl autocompletion"
+    echo 'source <(kubectl completion bash)' >>~/.bashrc
     read -p "Install kops? [Y/n]" LINUX_KOPS_CONFIG
     case $LINUX_KOPS_CONFIG in
         [Yy]* ) linuxKopsSetup break;;
@@ -98,7 +103,7 @@ localConfigSetup()
 
 gitConfigSetup()
 {
-    read -p "Please provide git repo url (Ex: https://github.com/hariom282538/GetJX.git)" gitConfigPath
+    read -p "Please provide git repo url (Ex: https://github.com/username/repo.git)" gitConfigPath
     mkdir -p ~/.kube/
     git clone gitConfigPath ~/.kube/
     echo "configured path - ~/.kube/"
